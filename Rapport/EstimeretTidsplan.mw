@@ -1,0 +1,69 @@
+#proj: #3584e4
+#rapp: #2f8b39
+
+#Back: #e01b24
+#backend: #f6d32d
+#Front: #c061cb
+#frontend: #e66100
+
+# Rapport #rapp
+style: section
+15 June 2026 to 15 June 2026 09:00: Godkendelse af opgave
+15 June 2026 to 15 June 2026: Rapport opsætning
+16 June 2026 to 24 June 2026: Process Rapport skrivning
+- [] Læsevejledning
+- [] Indledning
+- [] Problemformulering
+- [] Projectplanlægning
+- [] Begrundelser
+- [] Logbog
+- [] Realiseret tidsplan
+- [] Konklusion
+
+16 June 2026 to 24 June 2026: Produkt Rapport skrivning
+- [] Læsevejledning
+- [] Kravspec
+- [] Brugervejledning
+- [] Teknisk dokumentation
+
+24 June 2026 to 24 June 2026: Rapport aflevering
+
+# Projekt #proj
+style: section
+15 June 2026 to 15 June 2026: Repo oprettelse
+23 June 2026 to 25 June 2026: Forbered fremlæggelse
+26 June 2026 10:30 to 26 June 2026 11:00: Fremlæggelse
+24 June 2026 to 24 June 2026: Aflevering
+
+
+## Frontend #frontend
+15 June 2026 to 15 June 2026: SvelteKit opsætning #Front 
+16 June 2026 to 21 June 2026: App design #Front 
+  - [ ] Homepage 
+  - [ ] Sign in/Sign up
+  - [ ] Movie select
+  - [ ] Movie watch
+  - [ ] Token station
+  - [ ] Profile
+  
+### Sider
+16 June 2026 to 16 June 2026: Homepage #Front
+16 June 2026 to 17 June 2026: Sign in/up #Front
+17 June 2026 to 17 June 2026: Profile #Front
+17 June 2026 to 18 June 2026: Movie select #Front
+18 June 2026 to 19 June 2026: Movie watch #Front
+19 June 2026 to 22 June 2026: Token station #Front
+
+## Backend #Back
+### DB
+15 June 2026 to 15 June 2026: API / Database forbindelse opsætning #backend
+17 June 2026 to 22 June 2026: API endpoints #backend
+17 June 2026 to 17 June 2026: Bruger login tabel oprettelse #backend
+17 June 2026 to 17 June 2026: Bruger abonnement tabel oprettelse #backend
+17 June 2026 to 17 June 2026: Bruger tabel oprettelse #backend
+17 June 2026 to 17 June 2026: Film tabel oprettelse #backend
+
+### Sider 
+17 June 2026 to 19 June 2026: Sign in/up #backend
+18 June 2026 to 18 June 2026: Film import #backend
+19 June 2026 to 21 June 2026: Token functionalitet #backend
