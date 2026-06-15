@@ -16,6 +16,6 @@ def read_root():
     return {"Hello": "World"}
 
 @app.get("/getItem")
-def read_item(item_id, name, db: Session = Depends(get_db)):
+def read_item(db: Session = Depends(get_db)):
     testobj = db.query(test).first()
     return testobj.name
