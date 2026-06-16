@@ -9,3 +9,18 @@ services:
       - MYSQL_DATABASE=minty
     volumes:
       - ./data:/var/lib/mysql
+    networks:
+      - app-network
+    restart: unless-stopped
+  backend:
+    build:
+      ./
+    container_name: mintyBackend
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+    restart: unless-stopped
+  
+networks:
+  app-network:
