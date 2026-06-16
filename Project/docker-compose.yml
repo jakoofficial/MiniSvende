@@ -8,7 +8,7 @@ services:
       - MYSQL_ROOT_PASSWORD=admin
       - MYSQL_DATABASE=minty
     volumes:
-      - ./data:/var/lib/mysql
+      - mintyData:/var/lib/mysql
     networks:
       - app-network
     restart: unless-stopped
@@ -24,3 +24,5 @@ services:
   
 networks:
   app-network:
+volumes:
+  mintyData:
