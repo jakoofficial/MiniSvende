@@ -3,7 +3,7 @@ services:
     image: mysql:latest
     container_name: mintyMysql
     ports:
-      - "3306:3306"
+      - "3316:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=admin
       - MYSQL_DATABASE=minty
@@ -15,15 +15,15 @@ services:
     healthcheck: 
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
-      timeout: 3s
-      retries: 5
+      timeout: 10s
+      retries: 20
   
   backend:
     build:
       ./
     container_name: mintyBackend
     ports:
-      - "8000:8000"
+      - "8010:8000"
     networks:
       - app-network
     restart: unless-stopped

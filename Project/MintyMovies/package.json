@@ -11,7 +11,7 @@
 		"lint": "prettier --check .",
 		"format": "prettier --write ."
 	},
-	"devDependencies": {
+	"dependencies": {
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/adapter-node": "^5.5.4",
 		"@sveltejs/kit": "^2.63.0",

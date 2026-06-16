@@ -2,7 +2,7 @@ from sqlalchemy import String, create_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
 # Connection
-engine = create_engine("mysql+pymysql://root:admin@mintyMysql:3306/minty", echo=True)
+engine = create_engine("mysql+pymysql://root:admin@mysql:3306/minty", echo=True)
 
 class Base(DeclarativeBase):
     pass
