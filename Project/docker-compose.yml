@@ -17,6 +17,7 @@ services:
       interval: 5s
       timeout: 3s
       retries: 5
+  
   backend:
     build:
       ./
@@ -29,6 +30,19 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+  
+  frontend:
+    build: ./MintyMovies/
+    container_name: MintyMovies
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_started
+
 networks:
   app-network:
 volumes:
