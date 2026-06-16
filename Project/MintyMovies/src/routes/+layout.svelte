@@ -19,7 +19,10 @@
 <section>
 	<nav>
 		<a href="./">Home</a>
-		<a href="./">som</a>
+		<a href="./categories">Categories</a>
+		<a href="./tokenstation">Token Station</a>
+		<a href="./subscriptions">Subscriptions</a>
+		<a href="./profile">Profile</a>
 	</nav>
 	<div id="content">
 		{@render children()}
