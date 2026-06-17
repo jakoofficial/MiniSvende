@@ -8,3 +8,41 @@ body {
     background-color: #181818;
 }
 
+section {
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+}
+
+#content {
+    max-width: 1920px;
+    max-height: 1080px;
+    margin: auto;
+}
+
+#topbar {
+    display: flex;
+}
+
+#topbar p{
+    float:left;
+    /* background-color: aquamarine; */
+}
+
+#topbar nav {
+    min-width: 15vw;
+    min-height: 5vh;
+    margin: auto;
+    transform: translateX(-25%);
+    /* background-color: rgb(44, 63, 57); */
+    display: flex;
+}
+#topbar nav a {
+    background-color: rgb(92, 92, 92);
+    flex: auto;
+    min-width: 15%;
+    margin: 0px 5px;
+    border-radius: 25px;
+    align-content: center;
+    text-align: center;
+}

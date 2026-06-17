@@ -17,13 +17,16 @@
 </svelte:head>
 
 <section>
-	<nav>
-		<a href="./">Home</a>
-		<a href="./categories">Categories</a>
-		<a href="./tokenstation">Token Station</a>
-		<a href="./subscriptions">Subscriptions</a>
-		<a href="./profile">Profile</a>
-	</nav>
+	<div id="topbar">
+		<p id="sitetitle">MintyMovies</p>
+		<nav>
+			<a href="./">Ho</a>
+			<a href="./categories">Ca</a>
+			<a href="./tokenstation">TS</a>
+			<a href="./subscriptions">Su</a>
+			<a href="./profile">Pr</a>
+		</nav>
+	</div>
 	<div id="content">
 		{@render children()}
 	</div>
