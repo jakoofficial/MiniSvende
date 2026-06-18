@@ -23,7 +23,7 @@
 
 <section>
 	<div id="topbar">
-		<p id="sitetitle">MintyMovies</p>
+		<p id="sitetitle">Minty Movies</p>
 		<nav>
 			<a href="./"><img src={home} alt="Home">
 			<p class="hoverText">

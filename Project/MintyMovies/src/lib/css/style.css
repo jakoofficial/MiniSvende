@@ -1,7 +1,16 @@
+:root {
+    --HoverColor: rgb(182, 182, 182)
+}
+
 * {
     margin: 0px;
     color: #808080;
     font-family: Roboto;
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 34px;
 }
 
 body {
@@ -9,24 +18,32 @@ body {
 }
 
 section {
-    margin: auto;
+    margin: 0 auto;
     width: 100vw;
     height: 100vh;
 }
 
 #content {
-    max-width: 1920px;
-    max-height: 1080px;
+    max-width: 90%;
     margin: auto;
+    display: block;
 }
 
 #topbar {
+    margin: 0 auto;
     display: flex;
+    min-height: 7vh;
+}
+
+#sitetitle {
+    font-size: 20px;
+    margin-left: 2%;
+    align-content: center;
+    border-radius: 25px;
 }
 
 #topbar p{
     float:left;
-    /* background-color: aquamarine; */
 }
 
 #topbar nav {
@@ -35,8 +52,6 @@ section {
     position: fixed;
     margin: 10px auto;
     left:0; right:0;
-    /* transform: translateX(50%); */
-    /* background-color: rgb(44, 63, 57); */
     display: flex;
 }
 #topbar nav a {
@@ -57,7 +72,7 @@ section {
     left: 0; right:0;
     border-style: solid;
     border-width: 0px 15px 20px 15px;
-    border-color: transparent transparent #afafaf transparent;
+    border-color: transparent transparent var(--HoverColor) transparent;
 }
 #topbar nav a img {
     width: 60%;
@@ -68,16 +83,18 @@ section {
 }
 .hoverText {
     display: none;
+    background-color: var(--HoverColor);
+    color: #353535;
     position: absolute;
     min-width: 30%;
     transform: translateX(-20%) translateY(50%);
     height: 40px;
     align-content: center;
     text-align: center;
-    background-color: #afafaf;
+    border-radius: 15px;
 
 }
 
 #topbar nav a:hover{
-    border-bottom:  rgb(182, 182, 182) 4px solid;
+    border-bottom: var(--HoverColor) 4px solid;
 }
