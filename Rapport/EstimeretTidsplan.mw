@@ -22,7 +22,7 @@ style: section
 
 16 June 2026 to 24 June 2026: Produkt Rapport skrivning
 - [] Læsevejledning
-- [] Kravspec
+- [x] Kravspec
 - [] Brugervejledning
 - [] Teknisk dokumentation
 
@@ -38,17 +38,17 @@ style: section
 
 ## Frontend #frontend
 15 June 2026 to 15 June 2026: SvelteKit opsætning #Front 
-16 June 2026 to 21 June 2026: App design #Front 
-  - [ ] Homepage 
-  - [ ] Sign in/Sign up
-  - [ ] Movie select
-  - [ ] Movie watch
-  - [ ] Token station
-  - [ ] Profile
+16 June 2026 to 17 June 2026: App design #Front 
+  - [x] Homepage 
+  - [x] Sign in/Sign up
+  - [x] Movie select
+  - [x] Movie watch
+  - [x] Token station
+  - [x] Profile
   
 ### Sider
-16 June 2026 to 16 June 2026: Homepage #Front
-16 June 2026 to 17 June 2026: Sign in/up #Front
+17 June 2026 to 18 June 2026: Homepage #Front
+18 June 2026 to 18 June 2026: Sign in/up #Front
 17 June 2026 to 17 June 2026: Profile #Front
 17 June 2026 to 18 June 2026: Movie select #Front
 18 June 2026 to 19 June 2026: Movie watch #Front
