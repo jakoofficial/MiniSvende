@@ -3,10 +3,12 @@
 
 <div class="pageContents">
 	<div id="recommended">
-		<div class="movieCapsule"></div>
-		<div class="movieCapsule"></div>
-		<div class="movieCapsule"></div>
-		<div class="movieCapsule"></div>
+		<div id="carosel">
+			<div class="movieCapsule"></div>
+			<div class="movieCapsule"></div>
+			<div class="movieCapsule"></div>
+			<div class="movieCapsule"></div>
+		</div>
 	</div>
 	<div id="categories">
 		<div id="catTitle">
@@ -18,7 +20,6 @@
 
 <!-- Styleing for the page -->
 <style>
-	
 	.pageContents {
 		display: block;
 		height: 90vh;
@@ -28,14 +29,21 @@
 	#recommended {
 		width: 100%;
 		height: 50%;
-		align-content: center;
+        align-content: center;
 	}
+    #carosel {
+        height: 45%;
+        margin: auto;
+        width: 100%;
+        justify-content: center;
+        display: flex;
+    }
 	.movieCapsule {
 		background-color: rgb(185, 185, 185);
 		width: 20%;
-		height: 50%;
+		height: 100%;
 		border-radius: 40px;
-		display: inline-block;
+        margin: 0px 0.5%;
 	}
 
 	/* Categories */
