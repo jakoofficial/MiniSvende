@@ -1,1 +1,12 @@
-<h1>hello this is gonna be a frontpage</h1>
+<script>
+
+</script>
+
+<div class="pageContents">
+    <h1>Frontpage</h1>
+</div>
+
+<!-- Styleing for the page -->
+<style>
+
+</style>
