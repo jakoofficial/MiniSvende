@@ -21,6 +21,7 @@ class UserSession(Base):
     session_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     session_key: Mapped[str] = mapped_column(String(50))
     user_id: Mapped[int] = mapped_column(ForeignKey("user_signin.signin_id"))
+    user: Mapped["UserProfile"] = relationship()
 
 class UserSignin(Base):
     __tablename__= "user_signin"
