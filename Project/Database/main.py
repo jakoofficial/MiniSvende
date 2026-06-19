@@ -28,12 +28,34 @@ def read_item(userID: int, db: Session = Depends(get_db)):
         "username": profile.username
     }
 
+@app.post("/createUser")
+def create_user(username, password, db: Session = Depends(get_db)):
+    qUser = db.query(UserProfile).filter(UserProfile.username == username).first()
+    if qUser: return "Username already exists"
+
+    signin = UserSignin()
+    signin.password = password
+    db.add(signin)
+    db.commit()
+    db.refresh(signin)
+    
+    if signin:
+        user = UserProfile()
+        user.username = username
+        user.signin_id = signin.signin_id
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+        
+        if user:
+            return "User created"
+    return "Something went wrong. Try again"
+
 @app.post("/signin")
 def user_signin(username, password, db: Session = Depends(get_db)):
     user = db.query(UserProfile).filter(UserProfile.username == username).first()
     if user and user.signin.password == password:
         sess = UserSession()
-        sess.session_key = "000001"
         sess.user_id = user.user_id
         db.add(sess)
         db.commit()
@@ -44,6 +66,5 @@ def user_signin(username, password, db: Session = Depends(get_db)):
         return [u, sess]
     
     return "No user found"
-    # signin = db.query
 
     pass

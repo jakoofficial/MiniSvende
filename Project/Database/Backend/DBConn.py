@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, String, Integer, ForeignKey, create_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, sessionmaker
-
+import uuid
 # Connection
 # engine = create_engine("mysql+pymysql://root:admin@mysql:3316/minty", echo=True)
 engine = create_engine("mysql+pymysql://root:admin@0.0.0.0:3316/minty", echo=True)
@@ -19,8 +19,12 @@ class UserSession(Base):
     __tablename__= "user_session"
 
     session_id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    session_key: Mapped[str] = mapped_column(String(50))
-    user_id: Mapped[int] = mapped_column(ForeignKey("user_signin.signin_id"))
+    session_key: Mapped[str] = mapped_column(String(32),
+                                             default=lambda:str(uuid.uuid4().hex),
+                                             unique=True,
+                                             index=True
+                                             )
+    user_id: Mapped[int] = mapped_column(ForeignKey("user_profile.user_id"))
     user: Mapped["UserProfile"] = relationship()
 
 class UserSignin(Base):
