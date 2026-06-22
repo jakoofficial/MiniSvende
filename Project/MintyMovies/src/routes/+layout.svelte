@@ -19,7 +19,6 @@
 	onMount(async () => {
 		ses = GetSessionToken();
 		if (ses) {
-			console.log(ses);
 			loggedin = true;
 		} else {
 			loggedin = false;
@@ -27,7 +26,7 @@
 	});
 
 	async function userSignout() {
-		const so = await Delete("signout", ses)
+		const so = await Delete("signout", {"session-token":ses})
 		RemoveSessionToken()
 		loggedin = false;
 		window.location.reload(true)

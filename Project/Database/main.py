@@ -39,6 +39,20 @@ def read_item(userID: int = Header(), db: Session = Depends(get_db)):
         "username": profile.username
     }
 
+@app.get("/getUserBySession")
+def get_user_by_session(session_token:str = Header(), db: Session = Depends(get_db)):
+    session = db.query(UserSession).filter(UserSession.session_key == session_token).first()
+    if not session:
+        raise HTTPException(status_code=404, detail="No session found")
+
+    user = db.query(UserProfile).filter(UserProfile.user_id == session.user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="No user found")
+
+    return {
+        "username" : user.username
+    }
+
 @app.post("/createUser")
 def create_user(username:str = Body(), password:str = Body(), db: Session = Depends(get_db)):
     qUser = db.query(UserProfile).filter(UserProfile.username == username).first()
@@ -80,7 +94,7 @@ def user_signin(username:str = Body(), password:str = Body(), db: Session = Depe
 
 @app.delete("/signout")
 def user_signout(session_token:str = Header(), db: Session = Depends(get_db)):
-    session = db.query(UserSession).filter(UserSession.session_key == session_token).first()
+    session = db.query(UserSession).filter(UserSession.session_key == session_token)
     if session:
         db.delete(session)
         db.commit()

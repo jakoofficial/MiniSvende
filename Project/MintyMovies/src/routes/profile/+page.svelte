@@ -1,5 +1,5 @@
 <script>
-	import {Post, SetSessionToken, GetSessionToken} from "$lib/DataFetcher";
+	import {Post, SetSessionToken, GetSessionToken, Get} from "$lib/DataFetcher";
 	import { onMount } from 'svelte';
 
     let username = "";
@@ -8,13 +8,12 @@
     // Use the props from `load`
     let ses = "";
     let loggedin = $state(false);
-	// $: if (loggedin != false){console.log("asd")}
+	let user;
 
 	onMount(async () => {
 		ses = GetSessionToken()
 		if (ses) {
-			
-			console.log(ses)
+			user = await Get("getUserBySession", {"session-token": ses})
 			loggedin = true
 		}
 		else {
@@ -26,7 +25,6 @@
 			'username': username,
 			'password': password
 		});
-		console.log(data)
 		SetSessionToken(data[1].session_key)
 		loggedin = true
 		window.location.reload(true)
@@ -36,16 +34,17 @@
 			'username': username,
 			'password': password
 		});
-		console.log(data)
 	}
 
 </script>
 
-<div class="pageContents">
+<div class=" {!loggedin ? 'pageContentsSignIn' : 'pageContentsSignedIn'}">
 	{#if loggedin}
-		<div id="profile"></div>
-	{:else}
-		<div id="signinArea">
+		<div id="profile">
+			<p>{user.username}</p>
+		</div>
+	{/if}
+		<div class="{loggedin ? 'signedout' : ''}" id="signinArea">
 			<div id="form">
 				<p id="formTitle">Sign in</p>
 				<input bind:value={username} type="text" placeholder="Username" />
@@ -56,15 +55,18 @@
 				</div>
 			</div>
 		</div>
-	{/if}
 </div>
 
 <!-- Styleing for the page -->
 <style>
-	.pageContents {
+	.pageContentsSignIn {
 		display: block;
 		height: 90vh;
 		align-content: center;
+	}
+	.pageContentsSignedIn{
+		display: block;
+		height: 90vh;
 	}
 	#signinArea {
 		background-color: #444444;
@@ -74,6 +76,9 @@
 		transform: translateY(-25%);
 		border-radius: 35px;
 		align-content: center;
+	}
+	.signedout {
+		visibility: collapse;
 	}
 	#signinArea #form {
 		width: 90%;
