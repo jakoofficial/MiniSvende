@@ -1,9 +1,20 @@
-from Backend.DBConn import *
+from .Backend.DBConn import *
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Depends, FastAPI, HTTPException, Body, Header
 from sqlalchemy.orm import Session
 
 app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["*"],
+)
 
 def get_db():
     db = SessionLocal()
@@ -17,7 +28,7 @@ def read_root():
     return {"Hello": "World"}
 
 @app.get("/getUser")
-def read_item(userID: int, db: Session = Depends(get_db)):
+def read_item(userID: int = Header(), db: Session = Depends(get_db)):
     profile = db.query(UserProfile).filter(UserProfile.user_id == userID).first()
 
     if not profile:
@@ -29,7 +40,7 @@ def read_item(userID: int, db: Session = Depends(get_db)):
     }
 
 @app.post("/createUser")
-def create_user(username, password, db: Session = Depends(get_db)):
+def create_user(username:str = Body(), password:str = Body(), db: Session = Depends(get_db)):
     qUser = db.query(UserProfile).filter(UserProfile.username == username).first()
     if qUser: return "Username already exists"
 
@@ -52,7 +63,7 @@ def create_user(username, password, db: Session = Depends(get_db)):
     return "Something went wrong. Try again"
 
 @app.post("/signin")
-def user_signin(username, password, db: Session = Depends(get_db)):
+def user_signin(username:str = Body(), password:str = Body(), db: Session = Depends(get_db)):
     user = db.query(UserProfile).filter(UserProfile.username == username).first()
     if user and user.signin.password == password:
         sess = UserSession()
@@ -67,4 +78,10 @@ def user_signin(username, password, db: Session = Depends(get_db)):
     
     return "No user found"
 
-    pass
+@app.delete("/signout")
+def user_signout(session_token:str = Header(), db: Session = Depends(get_db)):
+    session = db.query(UserSession).filter(UserSession.session_key == session_token).first()
+    if session:
+        db.delete(session)
+        db.commit()
+    return "Signed out"

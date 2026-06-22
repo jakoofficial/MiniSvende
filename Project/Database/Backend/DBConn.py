@@ -2,8 +2,8 @@ from sqlalchemy import Boolean, String, Integer, ForeignKey, create_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, sessionmaker
 import uuid
 # Connection
-# engine = create_engine("mysql+pymysql://root:admin@mysql:3316/minty", echo=True)
-engine = create_engine("mysql+pymysql://root:admin@0.0.0.0:3316/minty", echo=True)
+engine = create_engine("mysql+pymysql://root:admin@mysql:3306/minty", echo=True)
+# engine = create_engine("mysql+pymysql://root:admin@0.0.0.0:3316/minty", echo=True)
 
 class Base(DeclarativeBase):
     pass

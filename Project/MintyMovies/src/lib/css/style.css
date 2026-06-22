@@ -63,6 +63,22 @@ section {
     align-content: center;
     text-align: center;
 }
+#topbar #signout {
+    background-color: rgb(95, 56, 56);
+    min-width: 5%;
+    position: absolute;
+    top: 1%;
+    left: 94%;
+    float: right;
+    border: none;
+    border-radius: 20px;
+    align-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+#topbar #signout img {
+    width: 50%;
+}
 .triangle {
     position: fixed;
     top: -30%;
@@ -74,11 +90,11 @@ section {
     border-width: 0px 15px 20px 15px;
     border-color: transparent transparent var(--HoverColor) transparent;
 }
-#topbar nav a img {
+#topbar a img {
     width: 60%;
 }
 
-#topbar nav a:hover .hoverText {
+#topbar a:hover .hoverText {
     display: block;
 }
 .hoverText {
@@ -93,9 +109,8 @@ section {
     text-align: center;
     border-radius: 15px;
     font-size: 16px;
-
 }
 
-#topbar nav a:hover{
+#topbar a:hover{
     border-bottom: var(--HoverColor) 4px solid;
 }
