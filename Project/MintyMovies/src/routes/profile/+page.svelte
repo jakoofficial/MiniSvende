@@ -9,7 +9,6 @@
 	let ses = '';
 	let loggedin = $state(false);
 	let user;
-	let subtype = "tbd";
 
 	onMount(async () => {
 		ses = GetSessionToken();
@@ -38,7 +37,7 @@
 	}
 </script>
 
-<div class=" {!loggedin ? 'pageContentsSignIn' : 'pageContentsSignedIn'}">
+<div class="{!loggedin ? 'pageContentsSignIn' : 'pageContentsSignedIn'}">
 	{#if loggedin}
 		<div id="profile">
 			<div class="panel">
