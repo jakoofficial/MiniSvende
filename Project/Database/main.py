@@ -13,7 +13,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["*"],
+    expose_headers=["*"]
 )
 
 def get_db():
@@ -22,10 +22,6 @@ def get_db():
         yield db
     finally:
         db.close()
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
 
 @app.get("/getUser")
 def read_item(userID: int = Header(), db: Session = Depends(get_db)):
@@ -48,9 +44,14 @@ def get_user_by_session(session_token:str = Header(), db: Session = Depends(get_
     user = db.query(UserProfile).filter(UserProfile.user_id == session.user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="No user found")
+    
+    sub = db.query(Subscriptions).filter(Subscriptions.user_id == user.user_id).first()
+    if not sub:
+        raise HTTPException(status_code=404, detail="No one found")
 
     return {
-        "username" : user.username
+        "username" : user.username,
+        "sub" : sub.subscription,
     }
 
 @app.post("/createUser")
@@ -71,6 +72,11 @@ def create_user(username:str = Body(), password:str = Body(), db: Session = Depe
         db.add(user)
         db.commit()
         db.refresh(user)
+
+        sub = Subscriptions()
+        sub.user_id = user.user_id
+        db.add(sub)
+        db.commit()
         
         if user:
             return "User created"
@@ -94,7 +100,7 @@ def user_signin(username:str = Body(), password:str = Body(), db: Session = Depe
 
 @app.delete("/signout")
 def user_signout(session_token:str = Header(), db: Session = Depends(get_db)):
-    session = db.query(UserSession).filter(UserSession.session_key == session_token)
+    session = db.query(UserSession).filter(UserSession.session_key == session_token).first()
     if session:
         db.delete(session)
         db.commit()

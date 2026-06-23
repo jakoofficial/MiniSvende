@@ -1,60 +1,64 @@
 <script>
-	import {Post, SetSessionToken, GetSessionToken, Get} from "$lib/DataFetcher";
+	import { Post, SetSessionToken, GetSessionToken, Get } from '$lib/DataFetcher';
 	import { onMount } from 'svelte';
 
-    let username = "";
-    let password = "";
+	let username = '';
+	let password = '';
 
-    // Use the props from `load`
-    let ses = "";
-    let loggedin = $state(false);
+	// Use the props from `load`
+	let ses = '';
+	let loggedin = $state(false);
 	let user;
+	let subtype = "tbd";
 
 	onMount(async () => {
-		ses = GetSessionToken()
+		ses = GetSessionToken();
 		if (ses) {
-			user = await Get("getUserBySession", {"session-token": ses})
-			loggedin = true
+			user = await Get('getUserBySession', { 'session-token': ses });
+			loggedin = true;
+
+		} else {
+			loggedin = false;
 		}
-		else {
-			loggedin = false
-		}
-	})
+	});
 	async function Signin() {
-		const data = await Post('signin',{
-			'username': username,
-			'password': password
+		const data = await Post('signin', {
+			username: username,
+			password: password
 		});
-		SetSessionToken(data[1].session_key)
-		loggedin = true
-		window.location.reload(true)
+		SetSessionToken(data[1].session_key);
+		loggedin = true;
+		window.location.reload(true);
 	}
 	async function Signup() {
-		const data = await Post('createUser',{
-			'username': username,
-			'password': password
+		const data = await Post('createUser', {
+			username: username,
+			password: password
 		});
 	}
-
 </script>
 
 <div class=" {!loggedin ? 'pageContentsSignIn' : 'pageContentsSignedIn'}">
 	{#if loggedin}
 		<div id="profile">
-			<p>{user.username}</p>
-		</div>
-	{/if}
-		<div class="{loggedin ? 'signedout' : ''}" id="signinArea">
-			<div id="form">
-				<p id="formTitle">Sign in</p>
-				<input bind:value={username} type="text" placeholder="Username" />
-				<input bind:value={password} type="password" placeholder="Password" />
-				<div id="formButtons">
-					<button onclick={Signup}> Register </button>
-					<button onclick={Signin}> Sign in </button>
-				</div>
+			<div class="panel">
+				<p>{user.username}</p>
+				<hr>
+				<p>Subscription: {user.sub ? "Premium" : "Free user"}</p>
 			</div>
 		</div>
+	{/if}
+	<div class={loggedin ? 'signedout' : ''} id="signinArea">
+		<div id="form">
+			<p id="formTitle">Sign in</p>
+			<input bind:value={username} type="text" placeholder="Username" />
+			<input bind:value={password} type="password" placeholder="Password" />
+			<div id="formButtons">
+				<button onclick={Signup}> Register </button>
+				<button onclick={Signin}> Sign in </button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- Styleing for the page -->
@@ -64,10 +68,41 @@
 		height: 90vh;
 		align-content: center;
 	}
-	.pageContentsSignedIn{
+	.pageContentsSignedIn {
 		display: block;
 		height: 90vh;
 	}
+	#profile {
+		height: 50%;
+		width: 50%;
+		margin: auto;
+		/* transform: translateY(40%); */
+		align-content: center;
+	}
+	#profile .panel {
+		display: block;
+		background-color: #afafaf;
+		width: 100%;
+		height: 50%;
+		border-radius: 25px;
+	}
+	.panel hr {
+		transform: translateX(-5px) translateY(15px);
+		width: 95%;
+		margin:auto;
+		margin-bottom:15px;
+	}
+	.panel p{
+		color: #272727;
+		font-weight: bold;
+		transform: translateX(30px) translateY(10px);
+		font-size: 18px;
+	}
+	.panel p:first-of-type {
+		font-size: 26px;
+		text-transform: capitalize;
+	}
+	
 	#signinArea {
 		background-color: #444444;
 		width: 35%;
@@ -122,4 +157,3 @@
 		border-bottom: var(--HoverColor) 4px solid;
 	}
 </style>
-
