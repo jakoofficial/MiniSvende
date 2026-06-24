@@ -4,7 +4,7 @@
 import { browser } from '$app/env';
 import { goto } from '$app/navigation';
 // import { PUBLIC_API } from "$env/static/public";
-const API_PATH = 'http://localhost:8010/';
+const API_PATH = 'https://mintymoviesapi.boldbyte.dev/';
 
 export async function Get(endpoint, header = null) {
 	let Header = {
