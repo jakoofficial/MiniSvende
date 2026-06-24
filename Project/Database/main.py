@@ -105,3 +105,15 @@ def user_signout(session_token:str = Header(), db: Session = Depends(get_db)):
         db.delete(session)
         db.commit()
     return "Signed out"
+
+@app.get("/getAllMovies")
+def get_all_movies(db: Session = Depends(get_db)):
+    movies = db.query(Movies).all()
+    return movies
+
+@app.get("/getMovieByID")
+def get_movie_by_id(movie_id:int = Header(), db: Session = Depends(get_db)):
+    movie = db.query(Movies).filter(Movies.movie_id == movie_id).first()
+    if movie:
+        return movie
+    return "No movie found"

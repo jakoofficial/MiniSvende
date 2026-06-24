@@ -58,6 +58,7 @@ class Movies(Base):
     movie_desc: Mapped[str] = mapped_column(String(155))
     movie_link: Mapped[str] = mapped_column(String(250))
     premium: Mapped[bool] = mapped_column(Boolean, default=False)
+    release_year: Mapped[str] = mapped_column(String(5))
 
 class Categories(Base):
     __tablename__= "categories"
