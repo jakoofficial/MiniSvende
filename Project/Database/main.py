@@ -1,4 +1,4 @@
-from .Backend.DBConn import *
+from Backend.DBConn import *
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Depends, FastAPI, HTTPException, Body, Header
