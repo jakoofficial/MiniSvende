@@ -35,6 +35,7 @@
 					movieTitle={item.movie_title}
 					movieDesc={item.movie_desc}
 					premium={item.premium}
+                    releaseYear={item.release_year}
 				></MovieItems>
 			{/each}
         {:else}
@@ -52,6 +53,7 @@
 	}
 
 	#panel {
+        width: 100%;
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 10px;
